@@ -69,7 +69,7 @@
   // Auto-start camera when component mounts
   onMount(() => {
     startCamera();
-    getDevices();
+    setTimeout(getDevices, 1000);
   });
 
   $: if (selected_device_id) {
@@ -88,7 +88,7 @@
   <dialog bind:this={dialog_element} class="settings-popup" closed>
     <h2>Settings</h2>
     <div class="camera-selector">
-      <h3>Camera Select</h3>
+      <h3 on:click={getDevices}>Camera Select</h3>
       <div class="camera-list">
         {#each devices as device}
           <button on:click={() => (selected_device_id = device.deviceId)}>

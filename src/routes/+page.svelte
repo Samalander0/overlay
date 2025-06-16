@@ -22,8 +22,8 @@
     try {
       const constraints = {
         video: device_id
-          ? { device_id: { exact: device_id } }
-          : { device_id: { ideal: 'environment' } },
+          ? { deviceId: { exact: device_id } }
+          : { deviceId: { ideal: 'environment' } },
         audio: false
       };
 
@@ -85,7 +85,7 @@
     </button>
   </div>
 
-  <dialog bind:this={dialog_element} class="settings-popup" closed>
+  <dialog bind:this={dialog_element} class="settings-popup">
     <h2>Settings</h2>
     <div class="camera-selector">
       <h3 on:click={getDevices}>Camera Select</h3>
@@ -97,7 +97,7 @@
         {/each}
       </div>
     </div>
-    <button autofocus on:click={() => dialog_element.close()} class="close">Close</button>
+    <button on:click={() => dialog_element.close()} class="close">Close</button>
   </dialog>
 
   <div class="video-wrapper" style="--overlay-opacity: 0.1">

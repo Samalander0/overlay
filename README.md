@@ -1,38 +1,9 @@
-# sv
+So, I wanted to make one of these [flash cut](https://eyecannndy.com/technique/flash-cut)-style videos, and I wanted a way to overlay a photo on top of the camera. I searched for an app, and all I could find were sketchy apps with like three reviews and paid apps with premium features. Why wasn't there something simple? Or even a web version?
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+This app allows you to overlay a photo, and take and save photos. It's super simple, but works.
 
-## Creating a project
+The app functions as a PWA. If you don't know what that is... you're in for a treat. A PWA is a Progressive Web Application - kind of like a website, but it also works as an app. This means that the website can be downloaded as an app, and functions like an app on an iPhone or an Android Device (in theory, I haven't tested).
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Instalation (On iOS)
 
-```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+Go to [the website](https://overlaycam.vercel.app/) on Safari, click on the share button, then scroll down and click `Add to Home Screen` - it's a long button below `Find on Page` and above `Markup`. Then, click `Add` in the top right. The app should now be on your home screen. It might need to load for a few seconds when you first open it. 

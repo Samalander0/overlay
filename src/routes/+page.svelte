@@ -85,7 +85,7 @@
     </button>
   </div>
 
-  <dialog bind:this={dialog_element} class="settings-popup">
+  <dialog bind:this={dialog_element} class="settings-popup" closed>
     <h2>Settings</h2>
     <div class="camera-selector">
       <h3>Camera Select</h3>

@@ -43,6 +43,10 @@
   async function takePhoto() {
     const context = canvas_element.getContext('2d');
     if (!context) return;
+
+    canvas_element.width = video_element.videoWidth;
+    canvas_element.height = video_element.videoHeight;
+
     context.drawImage(video_element, 0, 0, canvas_element.width, canvas_element.height);
     photo_data = canvas_element.toDataURL('image/png');
   };

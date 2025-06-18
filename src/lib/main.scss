@@ -13,6 +13,10 @@ body {
   margin: 0;
   background: light-dark(white black);
   color: light-dark(black white);
+  button {
+    color: light-dark(black white);
+    font: inherit;
+  }
   font-family: "Geist", sans-serif;
 }
 

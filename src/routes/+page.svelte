@@ -130,5 +130,5 @@
     </div>
   </div>
 
-  <canvas bind:this={canvas_element} width="640" height="480" class="hidden"></canvas>
+  <canvas bind:this={canvas_element} width="480" height="640" class="hidden"></canvas>
 </main>

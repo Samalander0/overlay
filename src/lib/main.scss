@@ -179,6 +179,10 @@ body {
     background: light-dark(black, white);
     outline: 1px solid light-dark(black, white);
     outline-offset: 4px;
+
+    &:active {
+      opacity: 0.8;
+    }
   }
   .upload-photo {
     display: flex;

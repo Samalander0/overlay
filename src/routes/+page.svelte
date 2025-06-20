@@ -3,10 +3,12 @@
   import '$lib/main.scss';
   import { IconDownload, IconFileUpload, IconSettings } from "@tabler/icons-svelte";
 
+  // Elements adde
   let video_element,
       canvas_element,
       dialog_element;
-  let photo_data;
+
+  let photo_data; // Photo data stored here
 
   let devices = [];
   let selected_device_id = null;

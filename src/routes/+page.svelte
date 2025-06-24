@@ -86,7 +86,7 @@
 <main class="app">
   <div class="top-bar">
     <h1>Overlay</h1>
-    <button class="settings-button" on:click={() => dialog_element.showModal()}>
+    <button class="settings-button" on:click={() => dialog_element.showModal(); getDevices()}>
       <IconSettings size="32" stroke="1.75"/>
     </button>
   </div>

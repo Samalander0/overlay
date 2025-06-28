@@ -13,6 +13,8 @@
 
   let photo_data; 
 
+  let overlay_opacity = 0.15;
+
   let devices = [];
   let selected_device_id = null;
 
@@ -150,7 +152,7 @@
     <button on:click={() => settings_dialog_element.close()} class="close">Close</button>
   </dialog>
 
-  <div class="video-wrapper" style="--overlay-opacity: 0.1">
+  <div class="video-wrapper" style={`--overlay-opacity: ${overlay_opacity}`}>
     <video bind:this={video_element} autoplay playsinline class="main-video"></video>
     {#if image_url}
       <img src={image_url} alt="Selected" class="overlay-image" />
@@ -162,9 +164,9 @@
           {#if devices.filter((d) => d.label == "Back Dual Wide Camera").length > 0}
             <button on:click={() => {setDevice("Back Dual Wide Camera")}}>0.5</button>
           {/if}
-          <button>1</button>
+          <button on:click={() => {setDevice("Back Camera")}}>1</button>
           {#if devices.filter((d) => d.label == "Back Telephoto Camera").length > 0}
-            <button>3</button>
+            <button on:click={() => {setDevice("Back Telephoto Camera")}}>3</button>
           {/if}
         </div>
       {/if}

@@ -1,3 +1,5 @@
+![Screenshots](https://github.com/user-attachments/assets/3a27c267-e2f3-4984-b7f9-2734c25ac784)
+
 So, I wanted to make one of these [flash cut](https://eyecannndy.com/technique/flash-cut)-style videos, and I wanted a way to overlay a photo on top of the camera. I searched for an app, and all I could find were sketchy apps with like three reviews and paid apps with premium features. Why wasn't there something simple? Or even a web version?
 
 This app allows you to overlay a photo, and take and save photos. It's super simple, but works.

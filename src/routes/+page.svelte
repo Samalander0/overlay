@@ -6,9 +6,10 @@
   // Elements adde
   let video_element,
       canvas_element,
-      dialog_element;
+      settings_dialog_element,
+      welcome_dialog_element;
 
-  let photo_data; // Photo data stored here
+  let photo_data; 
 
   let devices = [];
   let selected_device_id = null;
@@ -34,12 +35,16 @@
       await video_element.play();
     } catch (err) {
       console.error('Error accessing camera:', err);
+      welcome_dialog_element.showModal();
     }
+
+    getDevices();
   }
 
   async function getDevices() {
     const allDevices = await navigator.mediaDevices.enumerateDevices();
     devices = allDevices.filter((d) => d.kind === 'videoinput');
+    console.log('Available devices:', devices);
   }
 
   async function takePhoto() {
@@ -74,8 +79,7 @@
 
   // Auto-start camera when component mounts
   onMount(() => {
-    startCamera();
-    setTimeout(getDevices, 1000);
+    welcome_dialog_element.showModal();
   });
 
   $: if (selected_device_id) {
@@ -86,12 +90,18 @@
 <main class="app">
   <div class="top-bar">
     <h1>Overlay</h1>
-    <button class="settings-button" on:click={() => {dialog_element.showModal(); getDevices()}}>
+    <button class="settings-button" on:click={() => {settings_dialog_element.showModal(); getDevices()}}>
       <IconSettings size="32" stroke="1.75"/>
     </button>
   </div>
 
-  <dialog bind:this={dialog_element} class="settings-popup">
+  <dialog bind:this={welcome_dialog_element} class="welcome-popup">
+    <h2>Welcome!</h2>
+    <p>This app allows you to add an overlay to your camera. If you haven't already, please allow camera access.</p>
+    <button on:click={() => {startCamera(); welcome_dialog_element.close()}} class="close">Start -></button>
+  </dialog>
+
+  <dialog bind:this={settings_dialog_element} class="settings-popup">
     <h2>Settings</h2>
     <div class="camera-selector">
       <h3 on:click={getDevices}>Camera Select</h3>
@@ -103,7 +113,7 @@
         {/each}
       </div>
     </div>
-    <button on:click={() => dialog_element.close()} class="close">Close</button>
+    <button on:click={() => settings_dialog_element.close()} class="close">Close</button>
   </dialog>
 
   <div class="video-wrapper" style="--overlay-opacity: 0.1">

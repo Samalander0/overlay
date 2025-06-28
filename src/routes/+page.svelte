@@ -8,10 +8,11 @@
   let video_element,
       canvas_element,
       settings_dialog_element,
-      welcome_dialog_element,
-      selfie_mode = false;
+      welcome_dialog_element;
 
   let photo_data; 
+  let selfie_mode = false;
+  let onboarding_step = 0;
 
   let overlay_opacity = 0.15;
 
@@ -102,6 +103,10 @@
     }
     */
 
+    onboarding_step = 1;
+  }
+  async function playCamera() {
+    await video_element.play();
     welcome_dialog_element.close();
   }
 
@@ -135,7 +140,11 @@
   <dialog bind:this={welcome_dialog_element} class="welcome-popup">
     <h2>Welcome!</h2>
     <p>This app allows you to add an overlay to your camera. If you haven't already, make sure to allow camera access.</p>
-    <button on:click={() => {start()}} class="close">Start -></button>
+    {#if onboarding_step === 0}
+      <button on:click={() => {start()}} class="close">Next -></button>
+    {:else if onboarding_step === 1}
+      <button on:click={() => {playCamera()}} class="close">Start -></button>
+    {/if}
   </dialog>
 
   <dialog bind:this={settings_dialog_element} class="settings-popup">

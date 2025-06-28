@@ -40,13 +40,14 @@
 
       const stream = await navigator.mediaDevices.getUserMedia(constraints);
       video_element.srcObject = stream;
+      console.log('Test!')
       await video_element.play();
     } catch (err) {
       console.error('Error accessing camera:', err);
       welcome_dialog_element.showModal();
     }
 
-    getDevices();
+    await getDevices();
   }
 
   async function getDevices() {
@@ -93,11 +94,13 @@
   async function start() {
     await startCamera();
 
+    /*
     if (devices.filter((d) => d.label == "Back Camera").length > 0) { // Note: in iOS, the back camera is called "Back Camera" - same for front camera. Need to test in Android to see how cameras are labeled
       selected_device_id = devices.filter((d) => d.label == "Back Camera")[0].deviceId;
     } else if (devices.length > 0) {
       selected_device_id = devices[0].deviceId;
     }
+    */
 
     welcome_dialog_element.close();
   }

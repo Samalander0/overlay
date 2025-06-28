@@ -5,7 +5,14 @@ This app allows you to overlay a photo, and take and save photos. It's super sim
 The app functions as a PWA. If you don't know what that is... you're in for a treat. A PWA is a Progressive Web Application - kind of like a website, but it also works as an app. This means that the website can be downloaded as an app, and functions like an app on an iPhone or an Android Device (in theory, I haven't tested).
 
 ### Demo:
-![demo](https://overlaycam.vercel.app/demo.MP4)
+
+https://github.com/user-attachments/assets/a60707d8-e87a-411f-af33-790bd6c7fe48
+
+**Before & After Photos:**
+
+![IMG_6402](https://github.com/user-attachments/assets/057184b3-c437-4ddc-9087-a873331aeb9c)
+![IMG_6403](https://github.com/user-attachments/assets/2b1debba-321e-42a5-a354-3d05b39a3bf8)
+
 
 ## Instalation (On iOS)
 

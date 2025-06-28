@@ -4,7 +4,7 @@
   import { IconDownload, IconFileUpload, IconSettings, IconRepeat } from "@tabler/icons-svelte";
     import { flip } from 'svelte/animate';
 
-  // Elements adde
+  // Elements
   let video_element,
       canvas_element,
       settings_dialog_element,
@@ -85,7 +85,7 @@
     }
   }
 
-  // Auto-start camera when component mounts
+  // Automattically start camera when component mounts
   onMount(() => {
     setTimeout(() => {welcome_dialog_element.showModal();}, 1000);
   });
@@ -93,12 +93,10 @@
   async function start() {
     await startCamera();
 
-    if (devices.filter((d) => d.label == "Back Camera").length > 0) {
+    if (devices.filter((d) => d.label == "Back Camera").length > 0) { // Note: in iOS, the back camera is called "Back Camera" - same for front camera. Need to test in Android to see how cameras are labeled
       selected_device_id = devices.filter((d) => d.label == "Back Camera")[0].deviceId;
     } else if (devices.length > 0) {
       selected_device_id = devices[0].deviceId;
-    } else {
-      console.warn('No video input devices found');
     }
 
     welcome_dialog_element.close();

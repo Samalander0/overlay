@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
 
 :root {
-  color-scheme: light dark; // New CSS feature!
+  color-scheme: light dark; // New CSS feature! (for development, you can change to dark or light, but for users it will automatically choose whichever is set in their settings for their device)
 }
 
 * {

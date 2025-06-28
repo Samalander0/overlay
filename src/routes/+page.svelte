@@ -161,8 +161,8 @@
     <div class="camera-buttons">
       {#if devices.filter((d) => d.label == "Back Camera").length > 0}
         <div class="zoom-controls">
-          {#if devices.filter((d) => d.label == "Back Dual Wide Camera").length > 0}
-            <button on:click={() => {setDevice("Back Dual Wide Camera")}}>0.5</button>
+          {#if devices.filter((d) => d.label == "Back Ultra Wide Camera").length > 0}
+            <button on:click={() => {setDevice("Back Ultra Wide Camera")}}>0.5</button>
           {/if}
           <button on:click={() => {setDevice("Back Camera")}}>1</button>
           {#if devices.filter((d) => d.label == "Back Telephoto Camera").length > 0}

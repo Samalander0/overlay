@@ -1,13 +1,15 @@
 <script>
   import { onMount } from 'svelte';
   import '$lib/main.scss';
-  import { IconDownload, IconFileUpload, IconSettings } from "@tabler/icons-svelte";
+  import { IconDownload, IconFileUpload, IconSettings, IconRepeat } from "@tabler/icons-svelte";
+    import { flip } from 'svelte/animate';
 
   // Elements adde
   let video_element,
       canvas_element,
       settings_dialog_element,
-      welcome_dialog_element;
+      welcome_dialog_element,
+      selfie_mode = false;
 
   let photo_data; 
 
@@ -79,11 +81,40 @@
 
   // Auto-start camera when component mounts
   onMount(() => {
-    welcome_dialog_element.showModal();
+    setTimeout(() => {welcome_dialog_element.showModal();}, 1000);
   });
 
-  $: if (selected_device_id) {
+  async function start() {
+    await startCamera();
+    if (devices.filter((d) => d.label = "Back Camera").length > 0) {
+      selected_device_id = devices.filter((d) => d.label == "Back Camera")[0].deviceId;
+    } else if (devices.length > 0) {
+      selected_device_id = devices[0].deviceId;
+    } else {
+      console.warn('No video input devices found');
+    }
+    await startCamera(selected_device_id);
+
+    welcome_dialog_element.close();
+  }
+
+  function setDevice(label) {
+    selected_device_id = devices.filter((d) => d.label == label)[0].deviceId;
     startCamera(selected_device_id);
+  }
+
+  function flipCamera() {
+    if (selfie_mode) {
+      setDevice("Back Camera")
+    } else {
+      setDevice("Front Camera")
+    }
+    
+    selfie_mode = !selfie_mode;
+  }
+
+  $: if (selected_device_id) {
+    startCamera(); 
   }
 </script>
 
@@ -98,7 +129,7 @@
   <dialog bind:this={welcome_dialog_element} class="welcome-popup">
     <h2>Welcome!</h2>
     <p>This app allows you to add an overlay to your camera. If you haven't already, please allow camera access.</p>
-    <button on:click={() => {startCamera(); welcome_dialog_element.close()}} class="close">Start -></button>
+    <button on:click={() => {start()}} class="close">Start -></button>
   </dialog>
 
   <dialog bind:this={settings_dialog_element} class="settings-popup">
@@ -121,6 +152,25 @@
     {#if image_url}
       <img src={image_url} alt="Selected" class="overlay-image" />
     {/if}
+
+    <div class="camera-buttons">
+      {#if devices.filter((d) => d.label == "Back Camera").length > 0}
+        <div class="zoom-controls">
+          {#if devices.filter((d) => d.label == "Back Dual Wide Camera").length > 0}
+            <button on:click={() => {setDevice("Back Dual Wide Camera")}}>0.5</button>
+          {/if}
+          <button>1</button>
+          {#if devices.filter((d) => d.label == "Back Telephoto Camera").length > 0}
+            <button>3</button>
+          {/if}
+        </div>
+      {/if}
+      {#if devices.filter((d) => d.label == "Front Camera").length > 0 && devices.filter((d) => d.label == "Back Camera").length > 0}
+        <button class="flip-camera" on:click={flipCamera}>
+          <IconRepeat size="24"/>
+        </button>
+      {/if}
+    </div>
   </div>
 
   <div class="app-bottom-bar">

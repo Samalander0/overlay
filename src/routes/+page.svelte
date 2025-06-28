@@ -24,6 +24,10 @@
         .forEach((track) => track.stop());
     }
 
+    if (!device_id && selected_device_id) {
+      device_id = selected_device_id;
+    }
+
     try {
       const constraints = {
         video: device_id
@@ -86,6 +90,7 @@
 
   async function start() {
     await startCamera();
+
     if (devices.filter((d) => d.label == "Back Camera").length > 0) {
       selected_device_id = devices.filter((d) => d.label == "Back Camera")[0].deviceId;
     } else if (devices.length > 0) {
@@ -93,14 +98,12 @@
     } else {
       console.warn('No video input devices found');
     }
-    await startCamera(selected_device_id);
 
     welcome_dialog_element.close();
   }
 
   function setDevice(label) {
     selected_device_id = devices.filter((d) => d.label == label)[0].deviceId;
-    startCamera(selected_device_id);
   }
 
   function flipCamera() {
@@ -114,7 +117,7 @@
   }
 
   $: if (selected_device_id) {
-    startCamera(); 
+    startCamera(selected_device_id); 
   }
 </script>
 
@@ -128,7 +131,7 @@
 
   <dialog bind:this={welcome_dialog_element} class="welcome-popup">
     <h2>Welcome!</h2>
-    <p>This app allows you to add an overlay to your camera. If you haven't already, please allow camera access.</p>
+    <p>This app allows you to add an overlay to your camera. If you haven't already, make sure to allow camera access.</p>
     <button on:click={() => {start()}} class="close">Start -></button>
   </dialog>
 

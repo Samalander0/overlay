@@ -73,7 +73,7 @@ async function respond() {
 
 		// if there's no cache, then just error out
 		// as there is nothing we can do to respond to this request
-		throw err;
+		throw err; // :(
 	}
 }
 

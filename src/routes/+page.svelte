@@ -86,7 +86,7 @@
 
   async function start() {
     await startCamera();
-    if (devices.filter((d) => d.label = "Back Camera").length > 0) {
+    if (devices.filter((d) => d.label == "Back Camera").length > 0) {
       selected_device_id = devices.filter((d) => d.label == "Back Camera")[0].deviceId;
     } else if (devices.length > 0) {
       selected_device_id = devices[0].deviceId;
@@ -109,7 +109,7 @@
     } else {
       setDevice("Front Camera")
     }
-    
+
     selfie_mode = !selfie_mode;
   }
 

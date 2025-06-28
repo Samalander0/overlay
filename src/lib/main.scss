@@ -20,6 +20,11 @@ body {
   font-family: "Geist", sans-serif;
 }
 
+button {
+  font: inherit;
+  color: inherit;
+}
+
 .app {
   display: flex;
   flex-direction: column;

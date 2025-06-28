@@ -19,7 +19,7 @@
   let devices = [];
   let selected_device_id = null;
 
-  async function startCamera(device_id) {
+  async function startCamera(device_id) { // Note: used to be for starting the camera but is now just camera setup. TODO: rename function
     // Stop existing stream if any
     if (video_element?.srcObject) {
       (video_element.srcObject)
@@ -41,8 +41,6 @@
 
       const stream = await navigator.mediaDevices.getUserMedia(constraints);
       video_element.srcObject = stream;
-      console.log('Test!')
-      await video_element.play();
     } catch (err) {
       console.error('Error accessing camera:', err);
       welcome_dialog_element.showModal();
@@ -95,18 +93,20 @@
   async function start() {
     await startCamera();
 
-    /*
     if (devices.filter((d) => d.label == "Back Camera").length > 0) { // Note: in iOS, the back camera is called "Back Camera" - same for front camera. Need to test in Android to see how cameras are labeled
       selected_device_id = devices.filter((d) => d.label == "Back Camera")[0].deviceId;
     } else if (devices.length > 0) {
       selected_device_id = devices[0].deviceId;
     }
-    */
 
     onboarding_step = 1;
   }
   async function playCamera() {
-    await video_element.play();
+    try {
+      await video_element.play();
+    } catch (err) {
+      console.error('Error w/ camera start:', err);
+    }
     welcome_dialog_element.close();
   }
 

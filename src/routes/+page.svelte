@@ -41,6 +41,8 @@
 
       const stream = await navigator.mediaDevices.getUserMedia(constraints);
       video_element.srcObject = stream;
+
+      await video_element.play();
     } catch (err) {
       console.error('Error accessing camera:', err);
       welcome_dialog_element.showModal();
@@ -87,6 +89,7 @@
 
   // Automattically start camera when component mounts
   onMount(() => {
+    startCamera();
     setTimeout(() => {welcome_dialog_element.showModal();}, 1000);
   });
 
@@ -101,33 +104,6 @@
 
     onboarding_step = 1;
   }
-  
-  async function playCamera() {
-  console.log("Trying to play video...");
-  
-  try {
-    console.log("Video element readyState:", video_element.readyState);
-    
-    if (video_element.readyState < 3) { 
-      console.log("Waiting for video");
-      await new Promise(resolve => {
-        video_element.onloadedmetadata = resolve;
-      });
-    }
-
-    const playPromise = video_element.play();
-    if (playPromise) {
-      await playPromise;
-    }
-
-    console.log("Video playback started!!!");
-    welcome_dialog_element.close();
-  } catch (err) {
-    console.error('Error playing video:', err);
-    alert('Unable to start video playback. Please try again.');
-  }
-}
-
 
   function setDevice(label) {
     selected_device_id = devices.filter((d) => d.label == label)[0].deviceId;

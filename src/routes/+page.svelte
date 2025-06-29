@@ -4,7 +4,7 @@
   import { IconDownload, IconFileUpload, IconSettings, IconRepeat } from "@tabler/icons-svelte";
     import { flip } from 'svelte/animate';
 
-  // Elements
+  // Elements via Svelte bind
   let video_element,
       canvas_element,
       settings_dialog_element,

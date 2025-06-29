@@ -90,7 +90,7 @@
   // Automattically start camera when component mounts
   onMount(() => {
     startCamera();
-    setTimeout(() => {welcome_dialog_element.showModal();}, 1000);
+    setTimeout(getDevices, 1000);
   });
 
   async function start() {
@@ -135,11 +135,7 @@
   <dialog bind:this={welcome_dialog_element} class="welcome-popup">
     <h2>Welcome!</h2>
     <p>This app allows you to add an overlay to your camera. If you haven't already, make sure to allow camera access.</p>
-    {#if onboarding_step === 0}
-      <button on:click={() => {start()}} class="close">Next -></button>
-    {:else if onboarding_step === 1}
-      <button on:click={() => {playCamera()}} class="close">Start -></button>
-    {/if}
+    <button on:click={() => {start()}} class="close">Start -></button>
   </dialog>
 
   <dialog bind:this={settings_dialog_element} class="settings-popup">

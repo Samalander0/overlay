@@ -18,4 +18,6 @@ https://github.com/user-attachments/assets/a60707d8-e87a-411f-af33-790bd6c7fe48
 
 ## Instalation (On iOS)
 
-Go to [the website](https://overlaycam.vercel.app/) on Safari, click on the share button, then scroll down and click `Add to Home Screen` - it's a long button below `Find on Page` and above `Markup`. Then, click `Add` in the top right. The app should now be on your home screen. It might need to load for a few seconds when you first open it. 
+Go to [the website](https://overlaycam.vercel.app/) on Safari, click on the share button, then scroll down and click `Add to Home Screen` - it's a long button below `Find on Page` and above `Markup`. Then, click `Add` in the top right. The app should now be on your home screen. It might need to load for a few seconds when you first open it.
+
+Note: As of 6/28, this for some reason does not work anymore. It works completely fine on Safari, but once it's on your home screen, it doesn't work anymore. I can't figure it out.

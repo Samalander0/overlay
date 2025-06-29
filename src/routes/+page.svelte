@@ -154,7 +154,7 @@
   </dialog>
 
   <div class="video-wrapper" style={`--overlay-opacity: ${overlay_opacity}`}>
-    <video bind:this={video_element} autoplay playsinline class="main-video"></video>
+    <video bind:this={video_element} autoplay class="main-video"></video>
     {#if image_url}
       <img src={image_url} alt="Selected" class="overlay-image" />
     {/if}
